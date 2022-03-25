@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Lab2
 {
+    /// <summary>
+    /// Implements the Circle variant of Shape.
+    /// </summary>
     class Circle : Shape
     {
         public override int TypePoint { get { return 2; } }

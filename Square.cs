@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Lab2
 {
+    /// <summary>
+    /// Implements the Square variant of Shape.
+    /// </summary>
     class Square : Shape
     {
         private decimal[] rightDiagXY = new decimal[2] { 0, 0 };

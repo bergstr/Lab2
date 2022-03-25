@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Lab2
 {
+    /// <summary>
+    /// Superclass of shapes, allows implementation of current and future shapes.
+    /// </summary>
     abstract class Shape
     {
         protected int x;

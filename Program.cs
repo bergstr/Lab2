@@ -27,7 +27,6 @@ namespace Lab2
                 // Takes the dot input from the user, removes whitespaces, control characters and paranthesis
                 // then splits the string into two and converts these to integers
                 // finally assigns the integers to our XY tuples first and second position.
-                //string dotInput = args[0]; // (x,y); 
                 Console.Write("Enter your guess (x,y): ");
                 string dotInput = Console.ReadLine();
                 string trimmedDotInput = String.Concat(dotInput.Where(x => !char.IsWhiteSpace(x) && !char.IsControl(x))).Replace("(", "").Replace(")", "");

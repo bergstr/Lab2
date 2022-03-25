@@ -10,6 +10,14 @@ namespace Lab2
         private List<Shape> hitList = new List<Shape>() { };
         private List<Shape> missList = new List<Shape>() { };
 
+        /// <summary>
+        /// Add individual shapes to the coordinate system (gameplan).
+        /// </summary>
+        /// <param name="shapeInput"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="length"></param>
+        /// <param name="points"></param>
         public void AddShape(string shapeInput, int x, int y, int length, int points) 
         {
             if (shapeInput == "CIRCLE") 
@@ -39,9 +47,14 @@ namespace Lab2
                 throw new Exception("Invalid shape!");
             }
         }
-        
-        // Go through list of objects in shapeList
-        // Check if dot is inside each shape
+
+
+        /// <summary>
+        /// Return list of shapes where dot was determined to be inside.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>List<Shape></returns>
         public List<Shape> ReturnHits(int x, int y)
         {
             for (int i = 0; i < shapeList.Count; i++)
@@ -56,6 +69,12 @@ namespace Lab2
             return hitList;
         }
 
+        /// <summary>
+        /// Return list of shapes where dot was determined to be outside.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>List<Shape></returns>
         public List<Shape> ReturnMisses(int x, int y)
         {
             for (int i = 0; i < shapeList.Count; i++)
