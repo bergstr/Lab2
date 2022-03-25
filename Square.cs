@@ -12,18 +12,14 @@ namespace Lab2
         public override int TypePoint { get { return 1; } }
 
         public Square()
-        {
-
-        }
+        {}
 
         public override decimal CalculateArea() 
         {
             decimal deciLength = Convert.ToDecimal(Length);
-
             return (deciLength / 4) * (deciLength / 4);
         }
     
-
         public override bool CalculateHit(int x, int y)
         {
             decimal side = Convert.ToDecimal(this.length / 4.0);

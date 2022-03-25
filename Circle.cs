@@ -8,9 +8,8 @@ namespace Lab2
     {
         public override int TypePoint { get { return 2; } }
 
-        public Circle() {
-
-        }
+        public Circle() 
+        {}
 
         public override decimal CalculateArea()
         {

@@ -19,26 +19,28 @@ namespace Lab2
 
             try {
 
-                if (args.Count() != 2)
+                if (args.Count() != 1)
                 {
-                    throw new Exception("Invalid number of arguments supplied.");
+                    throw new Exception("Argument with shapes was incorrectly entered or not present.");
                 }
 
                 // Takes the dot input from the user, removes whitespaces, control characters and paranthesis
                 // then splits the string into two and converts these to integers
                 // finally assigns the integers to our XY tuples first and second position.
-                string dotInput = args[0]; // (x,y); 
+                //string dotInput = args[0]; // (x,y); 
+                Console.Write("Enter your guess (x,y): ");
+                string dotInput = Console.ReadLine();
                 string trimmedDotInput = String.Concat(dotInput.Where(x => !char.IsWhiteSpace(x) && !char.IsControl(x))).Replace("(", "").Replace(")", "");
                 dotTuple = (Convert.ToInt32(trimmedDotInput.Split(",")[0]), Convert.ToInt32(trimmedDotInput.Split(",")[1]));
 
-                // Read shapes from args
-                string shapesUpper = args[1].ToUpper();
-                string formattedshapesInput = String.Concat(shapesUpper.Where(x => !char.IsWhiteSpace(x) && !char.IsControl(x))).Replace("\"", "");
+                // Read shapes from command line argument
+                string shapesFromArgs = args[0].ToUpper();
+                string formattedshapesInput = String.Concat(shapesFromArgs.Where(x => !char.IsWhiteSpace(x) && !char.IsControl(x))).Replace("\"", "");
 
-                // create definitions header from row[0]
+                // Create definitions header from first row (row[0])
                 // proceed to create instances of circle, square with foreach, which goes into list of shapes (gameplan)
                 bool isFirstRow = true;
-                foreach (var row in formattedshapesInput.Split(";", System.StringSplitOptions.RemoveEmptyEntries))
+                foreach (var row in formattedshapesInput.Split(";", StringSplitOptions.RemoveEmptyEntries))
                 {
                     string[] header = row.Split(",");
 
@@ -47,7 +49,7 @@ namespace Lab2
 
                         if (isFirstRow)
                         {
-                            // create definitions header from row[0]
+                            // Create definitions header from row[0]
                             // if row[0] special foreach-loop
                             shapePos = Array.IndexOf(header, "SHAPE");
                             Xpos = Array.IndexOf(header, "X");
@@ -66,42 +68,36 @@ namespace Lab2
 
                     else
                     {
-                        throw new Exception("Invalid number of input arguments, please try again!");
+                        throw new Exception("Invalid number of shape variables. Cannot create shapes.");
                     }
                 }
 
                 decimal scorehitsum = gameplan.CalculateShapeScore(gameplan.ReturnHits(dotTuple.X, dotTuple.Y));
                 decimal scoremissum = gameplan.CalculateShapeScore(gameplan.ReturnMisses(dotTuple.X, dotTuple.Y));
 
-                Console.WriteLine(+ decimal.Round(gameplan.CalculatePointScore(scorehitsum, scoremissum)));
+                Console.WriteLine("Your score: " + decimal.Round(gameplan.CalculatePointScore(scorehitsum, scoremissum)));
             
                 }
 
                 catch (FormatException)
                 {
-                    Console.Clear();
                     Console.WriteLine("Invalid data format, please try again!");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadLine();
-                    Console.Clear();
                 }
 
                 catch (ArgumentNullException)
                 {
-                    Console.Clear();
                     Console.WriteLine("Invalid data format, please try again!");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadLine();
-                    Console.Clear();
                 }
 
                 catch (Exception e)
                 {
-                    Console.Clear();
                     Console.WriteLine("Error! " + e.Message);
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadLine();
-                    Console.Clear();
                 }
             }
         }
